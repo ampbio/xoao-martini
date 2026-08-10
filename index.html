@@ -175,7 +175,7 @@
     to{ transform:rotate(360deg); }
   }
   .avatar-wrap img{ transition:transform .35s cubic-bezier(.2,.8,.2,1); }
-  .avatar-wrap:hover img{ transform:scale(1.05) rotate(-2deg); }
+  @media (hover:hover) and (pointer:fine){ .avatar-wrap:hover img{ transform:scale(1.05) rotate(-2deg); } }
   .avatar-wrap img{
     width:100%;
     height:100%;
@@ -261,7 +261,7 @@
     font-weight:700;
     text-decoration:none;
   }
-  .site-footer-line.dev a:hover{ text-decoration:underline; }
+  @media (hover:hover) and (pointer:fine){ .site-footer-line.dev a:hover{ text-decoration:underline; } }
 
   .links-label{
     font-family:'Baloo 2',sans-serif;
@@ -291,7 +291,7 @@
     cursor:pointer;
     transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
   }
-  .link-btn:hover{transform:translateY(-2px) var(--tilt, rotate(0deg));}
+  @media (hover:hover) and (pointer:fine){ .link-btn:hover{transform:translateY(-2px) var(--tilt, rotate(0deg));} }
   .link-btn:active{transform:translateY(0px) scale(.98);}
 
   .link-btn.primary{
@@ -299,7 +299,7 @@
     color:#fff;
     box-shadow:0 6px 0 var(--blue-800);
   }
-  .link-btn.primary:hover{box-shadow:0 8px 0 var(--blue-800); filter:brightness(1.04);}
+  @media (hover:hover) and (pointer:fine){ .link-btn.primary:hover{box-shadow:0 8px 0 var(--blue-800); filter:brightness(1.04);} }
 
   .link-btn.secondary{
     background:#fff;
@@ -307,7 +307,7 @@
     border:2.5px solid var(--blue-500);
     box-shadow:0 6px 0 var(--blue-300);
   }
-  .link-btn.secondary:hover{box-shadow:0 8px 0 var(--blue-300);}
+  @media (hover:hover) and (pointer:fine){ .link-btn.secondary:hover{box-shadow:0 8px 0 var(--blue-300);} }
 
   .link-btn.tertiary{
     background:var(--blue-100);
@@ -315,7 +315,7 @@
     border:2.5px solid var(--blue-300);
     box-shadow:0 6px 0 var(--blue-300);
   }
-  .link-btn.tertiary:hover{box-shadow:0 8px 0 var(--blue-300);}
+  @media (hover:hover) and (pointer:fine){ .link-btn.tertiary:hover{box-shadow:0 8px 0 var(--blue-300);} }
 
   .icon-svg{width:22px;height:22px;flex-shrink:0;}
 
@@ -335,7 +335,7 @@
     text-decoration:none;
     transition:transform .15s ease, background .15s ease;
   }
-  .socials a:hover{transform:translateY(-3px); background:var(--blue-600);}
+  @media (hover:hover) and (pointer:fine){ .socials a:hover{transform:translateY(-3px); background:var(--blue-600);} }
   .socials svg{width:20px;height:20px;}
   .socials a.ig{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);}
   .socials a.tiktok{background:#010101;}
@@ -349,6 +349,17 @@
     .avatar-wrap{width:96px; height:96px;}
     .hero-row{gap:14px;}
     .motto{font-size:12.5px;}
+  }
+
+  /* Telas muito estreitas (iPhone SE 1ª/2ª geração ~320px, Android básicos):
+     96px (avatar) + 14px (gap) + ~154px (logo) passa do espaço disponível
+     dentro do card. Encolhe mais e permite quebra de linha como último
+     recurso, evitando overflow/corte da logo. */
+  @media (max-width:340px){
+    .hero-row{ flex-wrap:wrap; row-gap:10px; gap:10px; }
+    .avatar-wrap{ width:84px; height:84px; }
+    .name-logo{ height:88px; max-width:150px; }
+    .card{ padding:28px 14px 22px; }
   }
 
   /* MEDIA KIT POPUP */
@@ -395,7 +406,7 @@
     display:flex; align-items:center; justify-content:center; line-height:1; flex-shrink:0;
     transition:background .15s ease;
   }
-  .mk-close:hover{ background:var(--blue-300); }
+  @media (hover:hover) and (pointer:fine){ .mk-close:hover{ background:var(--blue-300); } }
   .mk-viewer{
     flex:1 1 420px; min-height:0; overflow:hidden; margin:0 16px; border-radius:16px;
     border:1.5px solid var(--blue-300); background:var(--blue-900);
@@ -410,7 +421,7 @@
     border-top-color:var(--blue-300); border-radius:50%; animation:spin .8s linear infinite;
   }
   .mk-loading-text{ font-family:'Baloo 2',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; }
-  .mk-actions{ padding:16px; display:flex; gap:10px; flex-shrink:0; }
+  .mk-actions{ padding:16px calc(16px + env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left)); display:flex; gap:10px; flex-shrink:0; }
   .mk-btn{
     flex:1; display:flex; align-items:center; justify-content:center; gap:8px;
     padding:14px 10px; border-radius:14px; text-decoration:none; border:none;
@@ -418,7 +429,7 @@
     letter-spacing:.3px; transition:filter .15s ease, transform .15s ease;
     cursor:pointer; appearance:none; -webkit-appearance:none;
   }
-  .mk-btn:hover{ transform:translateY(-2px); }
+  @media (hover:hover) and (pointer:fine){ .mk-btn:hover{ transform:translateY(-2px); } }
   .mk-btn.download{ background:var(--blue-500); color:#fff; box-shadow:0 5px 0 var(--blue-800); }
   .mk-btn.contact{ background:#25D366; color:#fff; box-shadow:0 5px 0 #158a41; }
 
@@ -465,7 +476,7 @@
     display:flex; align-items:center; justify-content:center; line-height:1; flex-shrink:0;
     transition:background .15s ease;
   }
-  .co-close:hover{ background:var(--blue-300); }
+  @media (hover:hover) and (pointer:fine){ .co-close:hover{ background:var(--blue-300); } }
   .co-sub{
     font-size:12.5px; color:var(--blue-600); padding:0 22px 16px; line-height:1.5; flex-shrink:0;
   }
@@ -478,7 +489,7 @@
     text-decoration:none; color:var(--blue-900); cursor:pointer;
     transition:transform .15s ease, border-color .15s ease, background .15s ease;
   }
-  .co-card:hover{ transform:translateX(4px); border-color:var(--blue-400); background:var(--blue-100); }
+  @media (hover:hover) and (pointer:fine){ .co-card:hover{ transform:translateX(4px); border-color:var(--blue-400); background:var(--blue-100); } }
   .co-card-icon{
     width:48px; height:48px; border-radius:14px; flex-shrink:0;
     background:linear-gradient(135deg,var(--blue-300),var(--blue-600));
@@ -509,7 +520,7 @@
     box-shadow:0 6px 0 var(--blue-800);
     transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
   }
-  .ip-card:hover{ box-shadow:0 8px 0 var(--blue-800); filter:brightness(1.04); transform:translateY(-2px); }
+  @media (hover:hover) and (pointer:fine){ .ip-card:hover{ box-shadow:0 8px 0 var(--blue-800); filter:brightness(1.04); transform:translateY(-2px); } }
   .ip-card:active{ transform:translateY(0px) scale(.98); box-shadow:0 6px 0 var(--blue-800); }
   .ip-card-accent{ display:none; }
   .ip-card-icon{
@@ -569,7 +580,7 @@
     display:flex; align-items:center; justify-content:center; line-height:1; flex-shrink:0;
     transition:background .15s ease;
   }
-  .ip-close:hover{ background:var(--blue-600); }
+  @media (hover:hover) and (pointer:fine){ .ip-close:hover{ background:var(--blue-600); } }
   .ip-lead{ font-size:12px; color:var(--blue-300); padding:6px 22px 14px; flex-shrink:0; }
   .ip-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:0 16px 14px;
@@ -580,7 +591,7 @@
     border-radius:16px; text-decoration:none; color:var(--white); text-align:center;
     transition:border-color .15s ease, transform .15s ease;
   }
-  .ip-option:hover{ border-color:var(--blue-300); transform:translateY(-2px); }
+  @media (hover:hover) and (pointer:fine){ .ip-option:hover{ border-color:var(--blue-300); transform:translateY(-2px); } }
   .ip-option-icon{
     width:48px; height:48px; border-radius:14px;
     background:linear-gradient(135deg,var(--blue-300),var(--blue-500));
@@ -601,13 +612,13 @@
   }
   .ip-more{
     display:flex; align-items:center; justify-content:center; gap:6px;
-    margin:0 16px 20px; padding:11px; background:transparent; border:1px solid var(--blue-600);
+    margin:0 16px calc(20px + env(safe-area-inset-bottom)); padding:11px; background:transparent; border:1px solid var(--blue-600);
     border-radius:10px; text-decoration:none; color:var(--blue-300);
     font-family:'Baloo 2',sans-serif; font-size:11.5px; font-weight:700;
     letter-spacing:1.5px; text-transform:uppercase;
     transition:color .15s ease, border-color .15s ease;
   }
-  .ip-more:hover{ color:var(--blue-100); border-color:var(--blue-400); }
+  @media (hover:hover) and (pointer:fine){ .ip-more:hover{ color:var(--blue-100); border-color:var(--blue-400); } }
 
   /* PARCERIAS (SLIDER DE POSTS DO INSTAGRAM) POPUP — centered, same family as co-overlay */
   .pc-overlay{
@@ -655,7 +666,7 @@
     display:flex; align-items:center; justify-content:center; line-height:1; flex-shrink:0;
     transition:background .15s ease;
   }
-  .pc-close:hover{ background:var(--blue-300); }
+  @media (hover:hover) and (pointer:fine){ .pc-close:hover{ background:var(--blue-300); } }
 
   .pc-slider{
     margin:14px 16px 0;
@@ -674,6 +685,10 @@
     scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
+    /* Ajuda o navegador a priorizar o gesto horizontal do carrossel mesmo
+       quando o toque começa em cima do iframe do embed do Instagram
+       (outro domínio), que senão pode "engolir" o gesto de swipe. */
+    touch-action:pan-x;
   }
   .pc-track::-webkit-scrollbar{ display:none; }
   .pc-slide{
@@ -693,6 +708,10 @@
     scrollbar-width:none;
     display:flex;
     justify-content:center;
+    /* Só deixa o próprio conteúdo (iframe do Instagram) capturar o scroll
+       vertical; o horizontal fica livre pro .pc-track tratar o swipe entre
+       slides, evitando o conflito de gesto quando o dedo começa sobre o post. */
+    touch-action:pan-y;
   }
   .pc-slide-embed::-webkit-scrollbar{ display:none; }
   .pc-slide-embed .instagram-media{
@@ -745,10 +764,12 @@
     font-size:12px;
     transition:background .15s ease, transform .15s ease;
   }
-  .pc-slide-btn:hover{
-    background:var(--blue-300);
-    color:var(--blue-900);
-    transform:translateY(-1px);
+  @media (hover:hover) and (pointer:fine){
+    .pc-slide-btn:hover{
+      background:var(--blue-300);
+      color:var(--blue-900);
+      transform:translateY(-1px);
+    }
   }
   .pc-slide-btn svg{ width:14px; height:14px; }
 
@@ -768,7 +789,7 @@
     cursor:pointer;
     transition:background .15s ease;
   }
-  .pc-nav:hover{ background:rgba(4,44,83,.8); }
+  @media (hover:hover) and (pointer:fine){ .pc-nav:hover{ background:rgba(4,44,83,.8); } }
   .pc-nav svg{ width:18px; height:18px; }
   .pc-prev{ left:8px; }
   .pc-next{ right:8px; }
@@ -1066,6 +1087,30 @@
 <script>
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Trava de scroll do fundo ao abrir popups. `overflow:hidden` sozinho não
+  // segura o bounce/rubber-band do Safari iOS (o usuário ainda arrasta e vê
+  // o conteúdo de trás "vazando"). Fixando o body na posição atual via
+  // position:fixed neutraliza o bounce em qualquer navegador, inclusive iOS.
+  let scrollLockY = 0;
+  function lockBodyScroll(){
+    scrollLockY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = (-scrollLockY) + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+  }
+  function unlockBodyScroll(){
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, scrollLockY);
+  }
+
   if(!reduceMotion){
     // subtle magnetic tilt on link buttons
     document.querySelectorAll('.link-btn').forEach(btn=>{
@@ -1103,7 +1148,7 @@
   function openColabPopup(){
     const overlay = document.getElementById('colabOverlay');
     overlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
     document.body.classList.add('modal-open');
     requestAnimationFrame(() => requestAnimationFrame(() => {
       overlay.classList.add('open');
@@ -1114,7 +1159,7 @@
     if (e !== null && e && e.target && e.target !== document.getElementById('colabOverlay')) return;
     const overlay = document.getElementById('colabOverlay');
     overlay.classList.remove('open');
-    setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = ''; document.body.classList.remove('modal-open'); }, 300);
+    setTimeout(() => { overlay.style.display = 'none'; unlockBodyScroll(); document.body.classList.remove('modal-open'); }, 300);
   }
 
   // Media Kit Popup
@@ -1122,7 +1167,20 @@
   // já que navegadores mobile (Safari iOS, Chrome Android, webviews de apps)
   // não têm plugin nativo de PDF em iframe.
   let pdfInjected = false;
-  const isMobileDevice = () => window.matchMedia('(max-width: 768px)').matches;
+  // Antes usava só a largura da tela (max-width:768px), mas celulares
+  // grandes em paisagem (iPhone Pro Max, muitos Android) facilmente passam
+  // disso — o Media Kit tentava abrir em modo "desktop" (iframe) no celular,
+  // e iframe de PDF costuma falhar silenciosamente em navegadores in-app
+  // (Instagram/Facebook), travando o spinner "Carregando…" pra sempre.
+  // Agora detecta o dispositivo de verdade: touch + UA mobile, com a
+  // largura como fallback só pra quem não bate nenhum dos dois sinais.
+  const isTouchDevice = () => ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  const isMobileUA = () => /Android|iPhone|iPad|iPod|Mobile|Windows Phone|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent || '');
+  const isMobileDevice = () => isMobileUA() || (isTouchDevice() && window.matchMedia('(max-width: 900px)').matches) || window.matchMedia('(max-width: 768px)').matches;
+
+  // Detecta navegadores in-app (Instagram/Facebook), onde window.open costuma
+  // ser bloqueado ou se comportar de forma imprevisível.
+  const isInAppBrowser = () => /FBAN|FBAV|Instagram|Line\//i.test(navigator.userAgent || '');
 
   if (window.pdfjsLib) {
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -1141,6 +1199,15 @@
     loading.style.pointerEvents = 'auto';
   }
 
+  // Guardamos essas referências fora da função pra poder recalcular a
+  // largura e re-renderizar as páginas já desenhadas quando o usuário girar
+  // o celular com o Media Kit aberto (senão as páginas ficam com a largura
+  // antiga: desproporcionais ou com sobra/falta de espaço lateral).
+  let mkContainerEl = null;
+  let mkPlaceholders = [];
+  let mkDpr = 1;
+  let mkLastWidth = 0;
+
   async function renderPdfThumbnail(){
     const loading = document.getElementById('pdfLoading');
     const container = document.getElementById('pdfCanvas').parentElement;
@@ -1155,6 +1222,9 @@
       const pdf = await pdfjsLib.getDocument('imagens/mediakit.pdf').promise;
       const containerWidth = container.clientWidth - 12;
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      mkContainerEl = container;
+      mkDpr = dpr;
+      mkLastWidth = containerWidth;
 
       const placeholders = [];
       for (let i = 1; i <= pdf.numPages; i++) {
@@ -1173,6 +1243,7 @@
           loading.style.display = 'none';
         }
       }
+      mkPlaceholders = placeholders;
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(async (entry) => {
@@ -1182,7 +1253,7 @@
             holder.dataset.rendered = '1';
             observer.unobserve(holder);
             const item = placeholders.find(p => p.holder === holder);
-            if (item) await renderPageIntoHolder(holder, item.page, containerWidth, dpr);
+            if (item) await renderPageIntoHolder(holder, item.page, mkLastWidth, mkDpr);
           }
         });
       }, { root: container, rootMargin: '600px 0px' });
@@ -1195,6 +1266,29 @@
       pdfFrameError();
     }
   }
+
+  // Re-renderiza as páginas do PDF já desenhadas com a nova largura do
+  // contêiner, disparado ao girar a tela (ou redimensionar) com o Media Kit
+  // aberto no modo mobile (canvas).
+  let mkResizeTimer = null;
+  async function handleMediaKitResize(){
+    if (!mkContainerEl || !mkPlaceholders.length) return;
+    const newWidth = mkContainerEl.clientWidth - 12;
+    if (!newWidth || Math.abs(newWidth - mkLastWidth) < 8) return;
+    mkLastWidth = newWidth;
+    for (const item of mkPlaceholders) {
+      if (item.holder.dataset.rendered !== '1') continue;
+      await renderPageIntoHolder(item.holder, item.page, newWidth, mkDpr);
+    }
+  }
+  window.addEventListener('resize', () => {
+    clearTimeout(mkResizeTimer);
+    mkResizeTimer = setTimeout(handleMediaKitResize, 200);
+  });
+  window.addEventListener('orientationchange', () => {
+    clearTimeout(mkResizeTimer);
+    mkResizeTimer = setTimeout(handleMediaKitResize, 300);
+  });
 
   async function renderPageIntoHolder(holder, page, cssWidth, dpr){
     const baseViewport = page.getViewport({ scale: 1 });
@@ -1210,6 +1304,11 @@
     canvas.style.display = 'block';
     const ctx = canvas.getContext('2d');
     await page.render({ canvasContext: ctx, viewport }).promise;
+    // Atualiza também as dimensões do holder (setadas inline na criação);
+    // sem isso, um re-render após rotação de tela mantém a caixa com o
+    // tamanho antigo mesmo com o canvas novo dentro.
+    holder.style.width = cssWidth + 'px';
+    holder.style.height = cssHeight + 'px';
     holder.innerHTML = '';
     holder.appendChild(canvas);
     await addLinkOverlays(holder, page, cssWidth, cssHeight);
@@ -1252,7 +1351,7 @@
     const overlay = document.getElementById('mediaKitOverlay');
     const panel = document.getElementById('mediaKitPanel');
     overlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
     document.body.classList.add('modal-open');
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -1274,7 +1373,18 @@
   }
 
   function openMediaKitFullscreen(){
-    window.open('imagens/mediakit.pdf', '_blank', 'noopener,noreferrer');
+    // Em navegadores in-app (Instagram/Facebook), window.open geralmente é
+    // bloqueado ou fica preso na própria webview. Nesses casos navega na
+    // mesma aba, que é o que de fato funciona ali.
+    if (isInAppBrowser()) {
+      window.location.href = 'imagens/mediakit.pdf';
+      return;
+    }
+    const win = window.open('imagens/mediakit.pdf', '_blank', 'noopener,noreferrer');
+    if (!win) {
+      // popup bloqueado: fallback pra mesma aba
+      window.location.href = 'imagens/mediakit.pdf';
+    }
   }
 
   function closeMediaKit(e){
@@ -1282,7 +1392,7 @@
     const overlay = document.getElementById('mediaKitOverlay');
     const panel = document.getElementById('mediaKitPanel');
     panel.style.transform = 'translateY(100%)';
-    setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = ''; document.body.classList.remove('modal-open'); }, 350);
+    setTimeout(() => { overlay.style.display = 'none'; unlockBodyScroll(); document.body.classList.remove('modal-open'); }, 350);
   }
 
   // ALGUMAS PARCERIAS — slider com embeds de posts/reels do Instagram.
@@ -1472,7 +1582,7 @@
     const overlay = document.getElementById('parceriasOverlay');
     const panel = document.getElementById('parceriasPanel');
     overlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
     document.body.classList.add('modal-open');
     buildParceriasSlider();
     requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -1485,13 +1595,13 @@
     if (e !== null && e && e.target && e.target !== document.getElementById('parceriasOverlay')) return;
     const overlay = document.getElementById('parceriasOverlay');
     overlay.classList.remove('open');
-    setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = ''; document.body.classList.remove('modal-open'); }, 300);
+    setTimeout(() => { overlay.style.display = 'none'; unlockBodyScroll(); document.body.classList.remove('modal-open'); }, 300);
   }
 
   function openIpPopup(){
     const overlay = document.getElementById('ipOverlay');
     overlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
     document.body.classList.add('modal-open');
     requestAnimationFrame(() => requestAnimationFrame(() => {
       overlay.classList.add('open');
@@ -1502,7 +1612,7 @@
     if (e !== null && e && e.target && e.target !== document.getElementById('ipOverlay')) return;
     const overlay = document.getElementById('ipOverlay');
     overlay.classList.remove('open');
-    setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = ''; document.body.classList.remove('modal-open'); }, 300);
+    setTimeout(() => { overlay.style.display = 'none'; unlockBodyScroll(); document.body.classList.remove('modal-open'); }, 300);
   }
 </script>
 
