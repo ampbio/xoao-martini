@@ -42,23 +42,22 @@
     body::after{ animation: drift-b 16s ease-in-out infinite; }
     .avatar-wrap{ animation: spotlight-pulse 3.2s ease-in-out infinite; }
     .card{ animation: card-in .7s cubic-bezier(.2,.8,.2,1) both; }
-    .handle{ animation: fade-up .6s .05s cubic-bezier(.2,.8,.2,1) both; }
-    h1{ animation: fade-up .6s .0s cubic-bezier(.2,.8,.2,1) both; }
-    .tagline{ animation: fade-up .6s .1s cubic-bezier(.2,.8,.2,1) both; }
-    .stats{ animation: fade-up .6s .15s cubic-bezier(.2,.8,.2,1) both; }
-    .socials{ animation: fade-up .6s .2s cubic-bezier(.2,.8,.2,1) both; }
+    .hero-row{ animation: fade-up .6s .0s cubic-bezier(.2,.8,.2,1) both; }
+    .handle{ animation: fade-up .6s .1s cubic-bezier(.2,.8,.2,1) both; }
+    .tagline{ animation: fade-up .6s .15s cubic-bezier(.2,.8,.2,1) both; }
+    .stats{ animation: fade-up .6s .2s cubic-bezier(.2,.8,.2,1) both; }
+    .socials{ animation: fade-up .6s .25s cubic-bezier(.2,.8,.2,1) both; }
     .socials a{ animation: pop-in .5s cubic-bezier(.34,1.56,.64,1) both; }
-    .socials a:nth-child(1){animation-delay:.28s;}
-    .socials a:nth-child(2){animation-delay:.34s;}
-    .socials a:nth-child(3){animation-delay:.40s;}
-    .socials a:nth-child(4){animation-delay:.46s;}
-    .socials a:nth-child(5){animation-delay:.52s;}
+    .socials a:nth-child(1){animation-delay:.32s;}
+    .socials a:nth-child(2){animation-delay:.38s;}
+    .socials a:nth-child(3){animation-delay:.44s;}
+    .socials a:nth-child(4){animation-delay:.50s;}
+    .socials a:nth-child(5){animation-delay:.56s;}
     .link-btn{ animation: fade-up .55s cubic-bezier(.2,.8,.2,1) both; }
-    .link-btn:nth-child(1){animation-delay:.58s;}
-    .link-btn:nth-child(2){animation-delay:.64s;}
-    .link-btn:nth-child(3){animation-delay:.70s;}
-    footer{ animation: fade-up .6s .78s cubic-bezier(.2,.8,.2,1) both; }
-    footer .wave{ display:inline-block; animation: wave 2.4s ease-in-out .9s infinite; transform-origin:70% 70%; }
+    .link-btn:nth-child(1){animation-delay:.62s;}
+    .link-btn:nth-child(2){animation-delay:.68s;}
+    .link-btn:nth-child(3){animation-delay:.74s;}
+    .motto .wave{ display:inline-block; animation: wave 2.4s ease-in-out .9s infinite; transform-origin:70% 70%; }
   }
 
   body::before{ transform:translate(calc(var(--px,0px)*-1), calc(var(--py,0px)*-1)); }
@@ -130,12 +129,28 @@
     padding:40px 26px 32px;
     text-align:center;
     box-shadow:0 20px 50px rgba(4,44,83,.25);
+    transition:box-shadow .25s ease;
+  }
+  body.modal-open .card{ display:none; }
+  body.modal-open .mk-overlay,
+  body.modal-open .co-overlay,
+  body.modal-open .pc-overlay{ visibility:visible; }
+
+  .hero-row{
+    display:flex;
+    align-items:center;
+    gap:26px;
+    text-align:left;
+    margin-bottom:20px;
   }
 
+  .name-block{ flex:1; min-width:0; }
+
   .avatar-wrap{
-    width:128px;
-    height:128px;
-    margin:0 auto 18px;
+    width:96px;
+    height:96px;
+    margin:0;
+    flex-shrink:0;
     border-radius:50%;
     padding:5px;
     background:var(--cream);
@@ -172,11 +187,20 @@
   h1{
     font-family:'Baloo 2',sans-serif;
     font-weight:800;
-    font-size:32px;
+    font-size:33px;
     color:var(--blue-900);
-    -webkit-text-stroke:1.5px var(--blue-900);
-    letter-spacing:.5px;
-    margin:0 0 4px;
+    -webkit-text-stroke:1.4px var(--blue-900);
+    letter-spacing:.3px;
+    margin:0 0 6px;
+    line-height:1.05;
+  }
+
+  .motto{
+    font-size:13px;
+    line-height:1.4;
+    color:var(--blue-600);
+    font-weight:500;
+    margin:0;
   }
 
   .handle{
@@ -298,16 +322,12 @@
   .socials a.wa{background:#25D366;}
   .socials a.mail{background:var(--blue-600);}
 
-  footer{
-    margin-top:20px;
-    font-size:12px;
-    color:var(--blue-600);
-    font-weight:500;
-  }
-
   @media (max-width:380px){
     h1{font-size:27px;}
     .card{padding:32px 18px 26px;}
+    .avatar-wrap{width:80px; height:80px;}
+    .hero-row{gap:18px;}
+    .motto{font-size:11.5px;}
   }
 
   /* MEDIA KIT POPUP */
@@ -315,12 +335,12 @@
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(4,44,83,.55);
+    background:rgba(133,183,235,.35);
     z-index:1000;
     align-items:flex-end;
     justify-content:center;
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
+    backdrop-filter:blur(28px) saturate(1.4);
+    -webkit-backdrop-filter:blur(28px) saturate(1.4);
   }
   .mk-panel{
     background:var(--cream);
@@ -386,13 +406,13 @@
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(4,44,83,.55);
+    background:rgba(133,183,235,.35);
     z-index:1000;
     align-items:center;
     justify-content:center;
     padding:20px;
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
+    backdrop-filter:blur(28px) saturate(1.4);
+    -webkit-backdrop-filter:blur(28px) saturate(1.4);
   }
   .co-panel{
     background:var(--cream);
@@ -456,17 +476,207 @@
     font-size:9px; color:#25D366; font-family:'Baloo 2',sans-serif; font-weight:700;
     letter-spacing:.5px; text-transform:uppercase;
   }
+
+  /* PARCERIAS (SLIDER DE POSTS DO INSTAGRAM) POPUP — centered, same family as co-overlay */
+  .pc-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(133,183,235,.35);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    backdrop-filter:blur(28px) saturate(1.4);
+    -webkit-backdrop-filter:blur(28px) saturate(1.4);
+  }
+  .pc-panel{
+    background:var(--cream);
+    border:1.5px solid var(--blue-300);
+    border-radius:26px;
+    width:100%;
+    max-width:400px;
+    height:88vh;
+    height:88dvh;
+    max-height:720px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    transform:scale(.92);
+    opacity:0;
+    transition:transform .3s cubic-bezier(.32,.72,0,1), opacity .3s ease;
+    box-shadow:0 20px 60px rgba(4,44,83,.35);
+  }
+  .pc-overlay.open .pc-panel{ transform:scale(1); opacity:1; }
+  .pc-header{ display:flex; align-items:flex-start; justify-content:space-between; padding:22px 22px 4px; flex-shrink:0; }
+  .pc-eyebrow{
+    font-family:'Baloo 2',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:2px; text-transform:uppercase; color:var(--blue-600); margin-bottom:2px;
+  }
+  .pc-title{
+    font-family:'Baloo 2',sans-serif; font-size:20px; font-weight:800;
+    color:var(--blue-900); letter-spacing:.3px; line-height:1.15;
+  }
+  .pc-close{
+    background:var(--blue-100); border:1.5px solid var(--blue-300); color:var(--blue-800);
+    width:34px; height:34px; border-radius:50%; font-size:18px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; line-height:1; flex-shrink:0;
+    transition:background .15s ease;
+  }
+  .pc-close:hover{ background:var(--blue-300); }
+
+  .pc-slider{
+    margin:14px 16px 0;
+    position:relative;
+    flex:1 1 auto;
+    min-height:0;
+    border-radius:16px;
+    overflow:hidden;
+    border:1.5px solid var(--blue-300);
+    background:var(--blue-900);
+  }
+  .pc-track{
+    display:flex;
+    height:100%;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .pc-track::-webkit-scrollbar{ display:none; }
+  .pc-slide{
+    flex:0 0 100%;
+    scroll-snap-align:center;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    background:var(--blue-900);
+  }
+  .pc-slide-embed{
+    flex:1 1 auto;
+    min-height:0;
+    width:100%;
+    overflow-y:auto;
+    overflow-x:hidden;
+    scrollbar-width:none;
+    display:flex;
+    justify-content:center;
+  }
+  .pc-slide-embed::-webkit-scrollbar{ display:none; }
+  .pc-slide-embed .instagram-media{
+    margin:0 !important;
+    width:100% !important;
+    min-width:0 !important;
+    max-width:100% !important;
+  }
+  .pc-slide-placeholder{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:100%;
+    color:var(--blue-100);
+    font-size:13px;
+    font-weight:600;
+    text-align:center;
+    padding:20px;
+  }
+  .pc-slide-info{
+    flex:0 0 auto;
+    padding:10px 12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.04);
+    border-top:1px solid rgba(255,255,255,.10);
+  }
+  .pc-slide-name{
+    font-family:'Baloo 2',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    color:var(--white);
+    text-align:center;
+    line-height:1.2;
+  }
+  .pc-slide-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 14px;
+    border-radius:999px;
+    border:1.5px solid var(--blue-300);
+    color:var(--white);
+    text-decoration:none;
+    font-family:'Baloo 2',sans-serif;
+    font-weight:600;
+    font-size:12px;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .pc-slide-btn:hover{
+    background:var(--blue-300);
+    color:var(--blue-900);
+    transform:translateY(-1px);
+  }
+  .pc-slide-btn svg{ width:14px; height:14px; }
+
+  .pc-nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    border:none;
+    background:rgba(4,44,83,.55);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .pc-nav:hover{ background:rgba(4,44,83,.8); }
+  .pc-nav svg{ width:18px; height:18px; }
+  .pc-prev{ left:8px; }
+  .pc-next{ right:8px; }
+
+  .pc-dots{
+    margin-top:12px;
+    flex:0 0 auto;
+    display:flex;
+    justify-content:center;
+    gap:6px;
+  }
+  .pc-dot{
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--blue-300);
+    transition:background .15s ease, transform .15s ease;
+  }
+  .pc-dot.active{
+    background:var(--blue-600);
+    transform:scale(1.3);
+  }
+
+  .pc-actions{ padding:16px; flex-shrink:0; }
 </style>
 </head>
 <body>
 
 <div class="card">
 
-  <div class="avatar-wrap">
-    <img src="imagens/foto.png" alt="Foto de Xoão Martini">
+  <div class="hero-row">
+    <div class="avatar-wrap">
+      <img src="imagens/foto.png" alt="Foto de Xoão Martini">
+    </div>
+
+    <div class="name-block">
+      <h1>Xoão Martini</h1>
+      <p class="motto">Comam bem e sejam felizes! <span class="wave">🍴</span></p>
+    </div>
   </div>
 
-  <h1>Xoão Martini</h1>
   <p class="handle">@xoaomartini</p>
 
   <p class="tagline">
@@ -499,125 +709,153 @@
       Parcerias, publicidades e collabs
     </div>
 
-    <!-- PARCERIAS POPUP -->
-    <div id="colabOverlay" class="co-overlay" onclick="closeColabPopup(event)">
-      <div id="colabPanel" class="co-panel" onclick="event.stopPropagation()">
-
-        <div class="co-header">
-          <div>
-            <div class="co-eyebrow">Xoão Martini</div>
-            <div class="co-title">Vamos Trabalhar Juntos?</div>
-          </div>
-          <button aria-label="Fechar" class="co-close" onclick="closeColabPopup()">×</button>
-        </div>
-
-        <div class="co-sub">Escolhe como queres colaborar e eu entro em contacto contigo no WhatsApp.</div>
-
-        <div class="co-cards">
-
-          <a href="https://api.whatsapp.com/send?phone=SEUNUMERO&text=Ol%C3%A1%2C%20tudo%20bem%3F%20Quero%20fechar%20uma%20parceria%20com%20voc%C3%AA%2C%20poderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" rel="noopener noreferrer" class="co-card">
-            <div class="co-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-            </div>
-            <div class="co-card-text">
-              <div class="co-card-title">Parceria</div>
-              <div class="co-card-desc">Marcas, produtos ou serviços que queiram crescer juntos comigo.</div>
-            </div>
-            <div class="co-card-tag">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              <span>WhatsApp</span>
-            </div>
-          </a>
-
-          <a href="https://api.whatsapp.com/send?phone=SEUNUMERO&text=Ol%C3%A1%2C%20tudo%20bem%3F%20Quero%20fechar%20uma%20publicidade%20com%20voc%C3%AA%2C%20poderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" rel="noopener noreferrer" class="co-card">
-            <div class="co-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 12H5c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1zm-5-6H6v1h8v-1zm2-2H6v1h10V8zm-6 4H6v1h4v-1z"/></svg>
-            </div>
-            <div class="co-card-text">
-              <div class="co-card-title">Publicidade</div>
-              <div class="co-card-desc">Divulga o teu negócio para a minha audiência engajada.</div>
-            </div>
-            <div class="co-card-tag">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              <span>WhatsApp</span>
-            </div>
-          </a>
-
-          <a href="https://api.whatsapp.com/send?phone=SEUNUMERO&text=Ol%C3%A1%2C%20tudo%20bem%3F%20Quero%20fechar%20uma%20collab%20com%20voc%C3%AA%2C%20poderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" rel="noopener noreferrer" class="co-card">
-            <div class="co-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-            </div>
-            <div class="co-card-text">
-              <div class="co-card-title">Collab</div>
-              <div class="co-card-desc">Criação de conteúdo conjunto, vídeos, reels ou projetos criativos.</div>
-            </div>
-            <div class="co-card-tag">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              <span>WhatsApp</span>
-            </div>
-          </a>
-
-        </div>
-      </div>
-    </div>
-
     <div class="link-btn secondary" role="button" tabindex="0" aria-label="Abrir Media Kit" onclick="openMediaKit()" onkeydown="if(event.key==='Enter'||event.key===' ')openMediaKit()" style="cursor:pointer;">
       <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
       Veja agora meu Media Kit
     </div>
 
-    <!-- MEDIA KIT POPUP -->
-    <div id="mediaKitOverlay" class="mk-overlay" onclick="closeMediaKit(event)">
-      <div id="mediaKitPanel" class="mk-panel" onclick="event.stopPropagation()">
-
-        <div class="mk-handle-wrap"><div class="mk-handle"></div></div>
-
-        <div class="mk-header">
-          <div>
-            <div class="mk-eyebrow">Xoão Martini</div>
-            <div class="mk-title">Media Kit</div>
-          </div>
-          <button aria-label="Fechar" class="mk-close" onclick="closeMediaKit()">×</button>
-        </div>
-
-        <div class="mk-viewer">
-          <div id="pdfLoading" class="mk-loading">
-            <div class="mk-spinner"></div>
-            <div class="mk-loading-text">Carregando…</div>
-          </div>
-          <iframe
-            id="pdfFrame"
-            src=""
-            style="width:100%;height:100%;min-height:380px;border:none;display:block;border-radius:16px;opacity:0;transition:opacity .3s;"
-            title="Media Kit Xoão Martini"
-            onload="pdfFrameLoaded()"
-            onerror="pdfFrameError()"
-          ></iframe>
-          <canvas id="pdfCanvas" style="display:none;max-width:100%;max-height:100%;margin:0 auto;border-radius:16px;opacity:0;transition:opacity .3s;position:relative;"></canvas>
-        </div>
-
-        <div class="mk-actions">
-          <button type="button" class="mk-btn download" onclick="openMediaKitFullscreen()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Ver em tela cheia
-          </button>
-          <a href="#" target="_blank" rel="noopener noreferrer" class="mk-btn contact">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Entre em Contato
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <a href="#" class="link-btn tertiary">
+    <div class="link-btn tertiary" role="button" tabindex="0" aria-label="Abrir algumas parcerias" onclick="openParceriasPopup()" onkeydown="if(event.key==='Enter'||event.key===' ')openParceriasPopup()" style="cursor:pointer;">
       <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       Algumas parcerias
-    </a>
+    </div>
 
   </div>
 
-  <footer>Comam bem e sejam felizes! <span class="wave">🍴</span></footer>
+</div>
 
+<!-- PARCERIAS POPUP -->
+<div id="colabOverlay" class="co-overlay" onclick="closeColabPopup(event)">
+  <div id="colabPanel" class="co-panel" onclick="event.stopPropagation()">
+
+    <div class="co-header">
+      <div>
+        <div class="co-eyebrow">Xoão Martini</div>
+        <div class="co-title">Vamos Trabalhar Juntos?</div>
+      </div>
+      <button aria-label="Fechar" class="co-close" onclick="closeColabPopup()">×</button>
+    </div>
+
+    <div class="co-sub">Escolhe como queres colaborar e eu entro em contacto contigo no WhatsApp.</div>
+
+    <div class="co-cards">
+
+      <a href="https://api.whatsapp.com/send?phone=352621630691&text=Ol%C3%A1%2C%20tudo%20bem%3F%20Quero%20fechar%20uma%20parceria%20com%20voc%C3%AA%2C%20poderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" rel="noopener noreferrer" class="co-card">
+        <div class="co-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        </div>
+        <div class="co-card-text">
+          <div class="co-card-title">Parceria</div>
+          <div class="co-card-desc">Marcas, produtos ou serviços que queiram crescer juntos comigo.</div>
+        </div>
+        <div class="co-card-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span>WhatsApp</span>
+        </div>
+      </a>
+
+      <a href="https://api.whatsapp.com/send?phone=352621630691&text=Ol%C3%A1%2C%20tudo%20bem%3F%20Quero%20fechar%20uma%20publicidade%20com%20voc%C3%AA%2C%20poderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" rel="noopener noreferrer" class="co-card">
+        <div class="co-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 12H5c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1zm-5-6H6v1h8v-1zm2-2H6v1h10V8zm-6 4H6v1h4v-1z"/></svg>
+        </div>
+        <div class="co-card-text">
+          <div class="co-card-title">Publicidade</div>
+          <div class="co-card-desc">Divulga o teu negócio para a minha audiência engajada.</div>
+        </div>
+        <div class="co-card-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span>WhatsApp</span>
+        </div>
+      </a>
+
+      <a href="https://api.whatsapp.com/send?phone=352621630691&text=Ol%C3%A1%2C%20tudo%20bem%3F%20Quero%20fechar%20uma%20collab%20com%20voc%C3%AA%2C%20poderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" rel="noopener noreferrer" class="co-card">
+        <div class="co-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        </div>
+        <div class="co-card-text">
+          <div class="co-card-title">Collab</div>
+          <div class="co-card-desc">Criação de conteúdo conjunto, vídeos, reels ou projetos criativos.</div>
+        </div>
+        <div class="co-card-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span>WhatsApp</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- MEDIA KIT POPUP -->
+<div id="mediaKitOverlay" class="mk-overlay" onclick="closeMediaKit(event)">
+  <div id="mediaKitPanel" class="mk-panel" onclick="event.stopPropagation()">
+
+    <div class="mk-handle-wrap"><div class="mk-handle"></div></div>
+
+    <div class="mk-header">
+      <div>
+        <div class="mk-eyebrow">Xoão Martini</div>
+        <div class="mk-title">Media Kit</div>
+      </div>
+      <button aria-label="Fechar" class="mk-close" onclick="closeMediaKit()">×</button>
+    </div>
+
+    <div class="mk-viewer">
+      <div id="pdfLoading" class="mk-loading">
+        <div class="mk-spinner"></div>
+        <div class="mk-loading-text">Carregando…</div>
+      </div>
+      <iframe
+        id="pdfFrame"
+        src=""
+        style="width:100%;height:100%;min-height:380px;border:none;display:block;border-radius:16px;opacity:0;transition:opacity .3s;"
+        title="Media Kit Xoão Martini"
+      ></iframe>
+      <canvas id="pdfCanvas" style="display:none;max-width:100%;max-height:100%;margin:0 auto;border-radius:16px;opacity:0;transition:opacity .3s;position:relative;"></canvas>
+    </div>
+
+    <div class="mk-actions">
+      <button type="button" class="mk-btn download" onclick="openMediaKitFullscreen()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Ver em tela cheia
+      </button>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="mk-btn contact">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Entre em Contato
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ALGUMAS PARCERIAS POPUP (slider de posts do Instagram) -->
+<div id="parceriasOverlay" class="pc-overlay" onclick="closeParceriasPopup(event)">
+  <div id="parceriasPanel" class="pc-panel" onclick="event.stopPropagation()">
+
+    <div class="pc-header">
+      <div>
+        <div class="pc-eyebrow">Xoão Martini</div>
+        <div class="pc-title">Algumas parcerias</div>
+      </div>
+      <button aria-label="Fechar" class="pc-close" onclick="closeParceriasPopup()">×</button>
+    </div>
+
+    <div class="pc-slider">
+      <div class="pc-track" id="parceriasTrack"></div>
+
+      <button type="button" class="pc-nav pc-prev" id="parceriasPrevBtn" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button type="button" class="pc-nav pc-next" id="parceriasNextBtn" aria-label="Próximo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="pc-dots" id="parceriasDots"></div>
+
+  </div>
 </div>
 
 <script>
@@ -653,13 +891,14 @@
     raf();
   }
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){ closeMediaKit(null); closeColabPopup(null); }
+    if(e.key === 'Escape'){ closeMediaKit(null); closeColabPopup(null); closeParceriasPopup(null); }
   });
 
   function openColabPopup(){
     const overlay = document.getElementById('colabOverlay');
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
     requestAnimationFrame(() => requestAnimationFrame(() => {
       overlay.classList.add('open');
     }));
@@ -669,7 +908,7 @@
     if (e !== null && e && e.target && e.target !== document.getElementById('colabOverlay')) return;
     const overlay = document.getElementById('colabOverlay');
     overlay.classList.remove('open');
-    setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = ''; }, 300);
+    setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = ''; document.body.classList.remove('modal-open'); }, 300);
   }
 
   // Media Kit Popup
@@ -772,6 +1011,7 @@
     const panel = document.getElementById('mediaKitPanel');
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         panel.style.transform = 'translateY(0)';
@@ -782,6 +1022,8 @@
             renderPdfThumbnail();
           } else {
             const frame = document.getElementById('pdfFrame');
+            frame.onload = pdfFrameLoaded;
+            frame.onerror = pdfFrameError;
             frame.src = 'imagens/mediakit.pdf#toolbar=0&navpanes=0';
           }
         }
@@ -798,7 +1040,212 @@
     const overlay = document.getElementById('mediaKitOverlay');
     const panel = document.getElementById('mediaKitPanel');
     panel.style.transform = 'translateY(100%)';
-    setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = ''; }, 350);
+    setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = ''; document.body.classList.remove('modal-open'); }, 350);
+  }
+
+  // ALGUMAS PARCERIAS — slider com embeds de posts/reels do Instagram.
+  // Edite aqui o nome e o link de cada parceria (ordem da lista = ordem dos slides).
+  // Enquanto não tiver o link real do post, deixa como está que aparece "Em breve".
+  const parceriasList = [
+    { nome: 'Parceria', link: 'https://www.instagram.com/reels/Da0PWE5tCRi/' },
+    { nome: 'Parceria', link: 'https://www.instagram.com/reels/DbbO0qqNeGt/' },
+    { nome: 'Parceria', link: 'https://www.instagram.com/reels/DbYkOestLiz/' },
+    { nome: 'Parceria', link: 'https://www.instagram.com/reels/DbGCIJGtXrC/' },
+    { nome: 'Parceria', link: 'https://www.instagram.com/reels/Da5SYeTN3aw/' },
+    { nome: 'Parceria', link: 'https://www.instagram.com/reels/DVyiG0uiEEV/' },
+  ];
+
+  function isInstaPostLink(link){
+    return /instagram\.com\/(p|reel|reels)\//i.test(link);
+  }
+  function toEmbedPermalink(link){
+    return link.replace('/reels/', '/reel/');
+  }
+
+  let parceriasBuilt = false;
+  let parceriasHasEmbeds = false;
+
+  function loadInstagramEmbedScript(callback){
+    if (window.instgrm) { callback(); return; }
+    const existing = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
+    if (existing) { existing.addEventListener('load', callback); return; }
+    const s = document.createElement('script');
+    s.src = 'https://www.instagram.com/embed.js';
+    s.async = true;
+    s.onload = callback;
+    document.body.appendChild(s);
+  }
+
+  function processParceriasEmbeds(){
+    if (!parceriasHasEmbeds) return;
+    loadInstagramEmbedScript(() => {
+      // só carrega o primeiro slide agora; os demais entram sob demanda
+      // (via IntersectionObserver, montado em buildParceriasSlider) quando
+      // o usuário realmente rolar até eles. Isso garante 1 pedido por vez
+      // de verdade — nunca mais de um embed em voo simultaneamente, que era
+      // o motivo do Instagram derrubar alguns silenciosamente (ex: 1º e 4º).
+      const first = document.querySelector('#parceriasTrack .pc-slide-embed[data-embed-pending="1"]');
+      if (first) loadOneEmbed(first);
+    });
+  }
+
+  let embedLoadBusy = false;
+  const embedQueue = [];
+
+  function loadOneEmbed(wrap){
+    if (!wrap || wrap.dataset.embedQueued === '1') return;
+    wrap.dataset.embedQueued = '1';
+    embedQueue.push(wrap);
+    runEmbedQueue();
+  }
+
+  function runEmbedQueue(){
+    if (embedLoadBusy) return;
+    const wrap = embedQueue.shift();
+    if (!wrap) return;
+    embedLoadBusy = true;
+    waitForEmbed(wrap, 0, () => {
+      embedLoadBusy = false;
+      runEmbedQueue();
+    });
+  }
+
+  function waitForEmbed(wrap, attempt, done){
+    // Passa "wrap" pro process() pra ele converter SÓ este blockquote.
+    // Sem o argumento, o instgrm varre a página inteira e tenta converter
+    // todos os blockquotes pendentes que existirem no DOM, mesmo que a
+    // gente só quisesse processar um.
+    if (window.instgrm) window.instgrm.Embeds.process(wrap);
+
+    if (wrap.querySelector('iframe')){
+      wrap.removeAttribute('data-embed-pending');
+      done();
+      return;
+    }
+
+    if (attempt < 4){
+      setTimeout(() => waitForEmbed(wrap, attempt + 1, done), 900 * (attempt + 1));
+      return;
+    }
+
+    // esgotou as tentativas pra esse post: mostra o fallback e libera a fila
+    const bq = wrap.querySelector('blockquote.instagram-media');
+    const link = bq ? bq.getAttribute('data-instgrm-permalink') : '#';
+    wrap.removeAttribute('data-embed-pending');
+    wrap.innerHTML =
+      '<div class="pc-slide-placeholder" style="flex-direction:column;gap:14px;">' +
+        '<span>Não deu pra carregar a prévia deste post.</span>' +
+        '<a class="pc-slide-btn" href="' + link + '" target="_blank" rel="noopener noreferrer">' +
+          '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+            '<rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/>' +
+            '<circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/>' +
+            '<circle cx="17.2" cy="6.8" r="1" fill="currentColor"/>' +
+          '</svg>' +
+          'Ver no Instagram' +
+        '</a>' +
+      '</div>';
+    done();
+  }
+
+  function buildParceriasSlider(){
+    if (parceriasBuilt) return;
+    parceriasBuilt = true;
+
+    const track = document.getElementById('parceriasTrack');
+    const dotsBox = document.getElementById('parceriasDots');
+    if (!track || !dotsBox) return;
+
+    if (parceriasList.length === 0){
+      track.innerHTML = '<div class="pc-slide"><div class="pc-slide-embed"><div class="pc-slide-placeholder">Em breve, parcerias por aqui!</div></div></div>';
+      return;
+    }
+
+    parceriasList.forEach(evento => {
+      const slide = document.createElement('div');
+      slide.className = 'pc-slide';
+
+      let embedHtml;
+      if (isInstaPostLink(evento.link)){
+        parceriasHasEmbeds = true;
+        embedHtml = '<div class="pc-slide-embed" data-embed-pending="1"><blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="' + toEmbedPermalink(evento.link) + '" data-instgrm-version="14"></blockquote></div>';
+      } else {
+        embedHtml = '<div class="pc-slide-embed"><div class="pc-slide-placeholder">Em breve</div></div>';
+      }
+
+      slide.innerHTML = embedHtml +
+        '<div class="pc-slide-info">' +
+          '<span class="pc-slide-name">' + evento.nome + '</span>' +
+          '<a class="pc-slide-btn" href="' + evento.link + '" target="_blank" rel="noopener noreferrer">' +
+            '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+              '<rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/>' +
+              '<circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/>' +
+              '<circle cx="17.2" cy="6.8" r="1" fill="currentColor"/>' +
+            '</svg>' +
+            'Ver no Instagram' +
+          '</a>' +
+        '</div>';
+      track.appendChild(slide);
+    });
+
+    const slides = track.querySelectorAll('.pc-slide');
+    const dots = [];
+    slides.forEach((slide, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'pc-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => track.scrollTo({ left: slide.offsetLeft, behavior: 'smooth' }));
+      dotsBox.appendChild(dot);
+      dots.push(dot);
+    });
+
+    // Carrega o embed de um slide quando ele fica visível no carrossel
+    // (ao invés de todos ao abrir o popup). Garante 1 post por vez, sob
+    // demanda, conforme o usuário for arrastando pro próximo.
+    if (parceriasHasEmbeds && 'IntersectionObserver' in window){
+      const embedObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const wrap = entry.target.querySelector('.pc-slide-embed[data-embed-pending="1"]');
+          if (wrap) loadInstagramEmbedScript(() => loadOneEmbed(wrap));
+        });
+      }, { root: track, threshold: 0.5 });
+      slides.forEach(slide => embedObserver.observe(slide));
+    }
+
+    function updateActiveDot(){
+      const index = Math.round(track.scrollLeft / track.clientWidth);
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    }
+    track.addEventListener('scroll', () => window.requestAnimationFrame(updateActiveDot));
+
+    function goToSlide(delta){
+      const index = Math.round(track.scrollLeft / track.clientWidth);
+      const next = Math.max(0, Math.min(slides.length - 1, index + delta));
+      track.scrollTo({ left: slides[next].offsetLeft, behavior: 'smooth' });
+    }
+    const prevBtn = document.getElementById('parceriasPrevBtn');
+    const nextBtn = document.getElementById('parceriasNextBtn');
+    if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(1));
+  }
+
+  function openParceriasPopup(){
+    const overlay = document.getElementById('parceriasOverlay');
+    const panel = document.getElementById('parceriasPanel');
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
+    buildParceriasSlider();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      overlay.classList.add('open');
+      processParceriasEmbeds();
+    }));
+  }
+
+  function closeParceriasPopup(e){
+    if (e !== null && e && e.target && e.target !== document.getElementById('parceriasOverlay')) return;
+    const overlay = document.getElementById('parceriasOverlay');
+    overlay.classList.remove('open');
+    setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = ''; document.body.classList.remove('modal-open'); }, 300);
   }
 </script>
 
