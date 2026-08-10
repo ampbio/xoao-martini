@@ -187,8 +187,8 @@
 
   .name-logo{
     display:block;
-    height:120px;
-    max-width:230px;
+    height:150px;
+    max-width:250px;
     width:auto;
     object-fit:contain;
   }
@@ -198,7 +198,7 @@
     line-height:1.4;
     color:var(--blue-600);
     font-weight:600;
-    margin:0 0 14px;
+    margin:0 0 22px;
   }
 
   .tagline{
@@ -244,6 +244,24 @@
     gap:14px;
     margin-bottom:26px;
   }
+
+  .site-footer{
+    text-align:center;
+    padding-top:6px;
+  }
+  .site-footer-line{
+    font-size:11px;
+    color:var(--blue-400);
+    line-height:1.6;
+    letter-spacing:.2px;
+  }
+  .site-footer-line.dev{ margin-top:2px; }
+  .site-footer-line.dev a{
+    color:var(--blue-600);
+    font-weight:700;
+    text-decoration:none;
+  }
+  .site-footer-line.dev a:hover{ text-decoration:underline; }
 
   .links-label{
     font-family:'Baloo 2',sans-serif;
@@ -306,7 +324,7 @@
     justify-content:center;
     flex-wrap:wrap;
     gap:12px;
-    margin-bottom:26px;
+    margin-bottom:18px;
   }
   .socials a{
     width:44px;height:44px;
@@ -326,7 +344,7 @@
   .socials a.mail{background:var(--blue-600);}
 
   @media (max-width:380px){
-    .name-logo{height:96px; max-width:190px;}
+    .name-logo{height:112px; max-width:200px;}
     .card{padding:32px 18px 26px;}
     .avatar-wrap{width:96px; height:96px;}
     .hero-row{gap:14px;}
@@ -484,29 +502,29 @@
      destaque de parceiro do site de referência, adaptado pra nossa
      identidade visual azul/Baloo 2 em vez do preto/laranja) */
   .ip-card{
-    display:flex; align-items:center; gap:14px; padding:14px 16px;
-    background:var(--blue-900); border:1.5px solid var(--blue-400);
-    border-radius:16px; color:var(--white); cursor:pointer; position:relative;
+    display:flex; align-items:center; gap:14px; padding:16px 18px;
+    background:var(--blue-500); border:none;
+    border-radius:18px; color:#fff; cursor:pointer; position:relative;
     overflow:hidden; text-decoration:none;
-    transition:background .2s ease, transform .15s ease;
+    box-shadow:0 6px 0 var(--blue-800);
+    transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
   }
-  .ip-card:hover{ background:#063a68; transform:translateX(4px); }
-  .ip-card-accent{
-    position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--blue-400);
-  }
+  .ip-card:hover{ box-shadow:0 8px 0 var(--blue-800); filter:brightness(1.04); transform:translateY(-2px); }
+  .ip-card:active{ transform:translateY(0px) scale(.98); box-shadow:0 6px 0 var(--blue-800); }
+  .ip-card-accent{ display:none; }
   .ip-card-icon{
     width:40px; height:40px; border-radius:11px; flex-shrink:0;
-    background:linear-gradient(135deg,var(--blue-300),var(--blue-500));
+    background:linear-gradient(135deg,var(--blue-300),var(--blue-100));
     display:flex; align-items:center; justify-content:center;
   }
   .ip-card-text{ flex:1; min-width:0; }
   .ip-card-title{
     font-family:'Baloo 2',sans-serif; font-size:15.5px; font-weight:700;
-    letter-spacing:.2px; line-height:1.2; color:var(--white);
+    letter-spacing:.2px; line-height:1.2; color:#fff;
   }
-  .ip-card-title span{ color:var(--blue-300); }
-  .ip-card-sub{ font-size:11px; color:var(--blue-300); margin-top:2px; letter-spacing:.2px; }
-  .ip-card-arrow{ color:var(--blue-300); flex-shrink:0; font-size:16px; }
+  .ip-card-title span{ color:var(--blue-100); }
+  .ip-card-sub{ font-size:11px; color:var(--blue-100); margin-top:2px; letter-spacing:.2px; }
+  .ip-card-arrow{ color:#fff; flex-shrink:0; font-size:16px; }
 
   /* POPUP do card especial — bottom sheet, mesma família visual do mk-overlay */
   .ip-overlay{
@@ -790,8 +808,6 @@
     </div>
   </div>
 
-  <p class="motto">Se me seguirem ficam mais bonitos! <span class="wave">✨</span></p>
-
   <p class="tagline">
     <b>Humor, histórias e cultura!</b><br>
     Conectando culturas e pessoas por meio de histórias, humor e entreterimento 🎬
@@ -814,6 +830,8 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     </a>
   </div>
+
+  <p class="motto">Se me seguirem ficam mais bonitos! <span class="wave">✨</span></p>
 
   <div class="links">
 
@@ -838,20 +856,25 @@
 
     <div class="links-label spaced">Indicações de parceiros e serviços</div>
 
-    <!-- Botão modelo: ainda sem link/ação definida, é só a estrutura pronta -->
-    <div class="ip-card" role="button" tabindex="0" aria-label="Abrir indicações de parceiros e serviços" onclick="openIpPopup()" onkeydown="if(event.key==='Enter'||event.key===' ')openIpPopup()">
+    <!-- Card especial: Amplyfying (mesmas infos do site de referência) -->
+    <div class="ip-card" role="button" tabindex="0" aria-label="Abrir serviços Amplyfying" onclick="openIpPopup()" onkeydown="if(event.key==='Enter'||event.key===' ')openIpPopup()">
       <div class="ip-card-accent"></div>
       <div class="ip-card-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#042C53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <img src="imagens/amplogo.png" alt="Amplyfying" style="width:40px;height:40px;object-fit:contain;border-radius:11px;display:block;">
       </div>
       <div class="ip-card-text">
-        <div class="ip-card-title"><span>Nome do Parceiro</span> — Descrição do serviço</div>
-        <div class="ip-card-sub">Indicações de confiança</div>
+        <div class="ip-card-title"><span>Amplyfying</span> — Faça o seu Média Kit e Seu Bio Site</div>
+        <div class="ip-card-sub">Entre outros Serviços</div>
       </div>
       <span class="ip-card-arrow">→</span>
     </div>
 
   </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-line">Todos os direitos reservados a Xoão Martini</div>
+    <div class="site-footer-line dev">Website desenvolvido por <a href="https://amplifying.com.br/servicos" target="_blank" rel="noopener noreferrer">AMPLIFYING</a></div>
+  </footer>
 
 </div>
 
@@ -998,8 +1021,8 @@
 
     <div class="ip-header">
       <div>
-        <div class="ip-eyebrow"><span>Indicações de</span> Parceiros</div>
-        <div class="ip-sub">Serviços de confiança recomendados pelo Xoão, é só chamar pelos botões do card!</div>
+        <div class="ip-eyebrow"><span>Serviços</span> Parceiros</div>
+        <div class="ip-sub">Serviços da Amp com desconto pela indicação do Xoão, só chamar pelos botões do card!</div>
       </div>
       <button aria-label="Fechar" class="ip-close" onclick="closeIpPopup()">×</button>
     </div>
@@ -1007,28 +1030,26 @@
     <div class="ip-lead">O que você precisa hoje?</div>
 
     <div class="ip-grid">
-      <!-- Modelo de opção 1 — troca o link, ícone e texto quando tiver o parceiro real -->
-      <a href="#" target="_blank" rel="noopener noreferrer" class="ip-option">
+      <a href="https://api.whatsapp.com/send?phone=554899897492&text=Oi%20tudo%20bem%3F%20Eu%20vim%20pelo%20Xo%C3%A3o%20e%20tenho%20interesse%20em%20fazer%20um%20Media%20Kit!" target="_blank" rel="noopener noreferrer" class="ip-option">
         <div class="ip-option-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#042C53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6v6H9z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#042C53"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/></svg>
         </div>
         <div>
-          <div class="ip-option-title">Serviço 1</div>
-          <div class="ip-option-desc">Descrição rápida do que é oferecido</div>
+          <div class="ip-option-title">Media Kit</div>
+          <div class="ip-option-desc">Apresente sua marca com profissionalismo</div>
         </div>
         <div class="ip-option-tag">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="#DCEBFB"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           <span>Pedir agora</span>
         </div>
       </a>
-      <!-- Modelo de opção 2 -->
-      <a href="#" target="_blank" rel="noopener noreferrer" class="ip-option">
+      <a href="https://api.whatsapp.com/send?phone=554899897492&text=Oi%20tudo%20bem%3F%20Eu%20vim%20pelo%20Xo%C3%A3o%20e%20tenho%20interesse%20em%20fazer%20um%20Bio%20Site!" target="_blank" rel="noopener noreferrer" class="ip-option">
         <div class="ip-option-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#042C53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#042C53"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
         </div>
         <div>
-          <div class="ip-option-title">Serviço 2</div>
-          <div class="ip-option-desc">Descrição rápida do que é oferecido</div>
+          <div class="ip-option-title">Bio Site</div>
+          <div class="ip-option-desc">Seu link único e completo na bio</div>
         </div>
         <div class="ip-option-tag">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="#DCEBFB"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1037,7 +1058,7 @@
       </a>
     </div>
 
-    <a href="#" target="_blank" rel="noopener noreferrer" class="ip-more">Veja outras indicações →</a>
+    <a href="https://amplifying.com.br/servicos" target="_blank" rel="noopener noreferrer" class="ip-more">Veja nossos outros serviços →</a>
 
   </div>
 </div>
