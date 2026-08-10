@@ -43,8 +43,8 @@
     .avatar-wrap{ animation: spotlight-pulse 3.2s ease-in-out infinite; }
     .card{ animation: card-in .7s cubic-bezier(.2,.8,.2,1) both; }
     .hero-row{ animation: fade-up .6s .0s cubic-bezier(.2,.8,.2,1) both; }
-    .handle{ animation: fade-up .6s .1s cubic-bezier(.2,.8,.2,1) both; }
-    .tagline{ animation: fade-up .6s .15s cubic-bezier(.2,.8,.2,1) both; }
+    .motto{ animation: fade-up .6s .15s cubic-bezier(.2,.8,.2,1) both; }
+    .tagline{ animation: fade-up .6s .2s cubic-bezier(.2,.8,.2,1) both; }
     .stats{ animation: fade-up .6s .2s cubic-bezier(.2,.8,.2,1) both; }
     .socials{ animation: fade-up .6s .25s cubic-bezier(.2,.8,.2,1) both; }
     .socials a{ animation: pop-in .5s cubic-bezier(.34,1.56,.64,1) both; }
@@ -139,16 +139,16 @@
   .hero-row{
     display:flex;
     align-items:center;
-    gap:26px;
-    text-align:left;
-    margin-bottom:20px;
+    justify-content:center;
+    gap:18px;
+    margin-bottom:22px;
   }
 
-  .name-block{ flex:1; min-width:0; }
+  .name-block{ flex:0 1 auto; min-width:0; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; }
 
   .avatar-wrap{
-    width:96px;
-    height:96px;
+    width:120px;
+    height:120px;
     margin:0;
     flex-shrink:0;
     border-radius:50%;
@@ -184,29 +184,19 @@
     border:3px solid var(--cream);
   }
 
-  h1{
-    font-family:'Baloo 2',sans-serif;
-    font-weight:800;
-    font-size:33px;
-    color:var(--blue-900);
-    -webkit-text-stroke:1.4px var(--blue-900);
-    letter-spacing:.3px;
-    margin:0 0 6px;
-    line-height:1.05;
+  .name-logo{
+    display:block;
+    height:120px;
+    max-width:230px;
+    width:auto;
+    object-fit:contain;
   }
 
   .motto{
-    font-size:13px;
+    font-size:14.5px;
     line-height:1.4;
     color:var(--blue-600);
-    font-weight:500;
-    margin:0;
-  }
-
-  .handle{
     font-weight:600;
-    color:var(--blue-600);
-    font-size:15px;
     margin:0 0 14px;
   }
 
@@ -323,11 +313,11 @@
   .socials a.mail{background:var(--blue-600);}
 
   @media (max-width:380px){
-    h1{font-size:27px;}
+    .name-logo{height:96px; max-width:190px;}
     .card{padding:32px 18px 26px;}
-    .avatar-wrap{width:80px; height:80px;}
-    .hero-row{gap:18px;}
-    .motto{font-size:11.5px;}
+    .avatar-wrap{width:96px; height:96px;}
+    .hero-row{gap:14px;}
+    .motto{font-size:12.5px;}
   }
 
   /* MEDIA KIT POPUP */
@@ -672,12 +662,11 @@
     </div>
 
     <div class="name-block">
-      <h1>Xoão Martini</h1>
-      <p class="motto">Comam bem e sejam felizes! <span class="wave">🍴</span></p>
+      <img class="name-logo" src="imagens/xoao.png" alt="Xoão Martini">
     </div>
   </div>
 
-  <p class="handle">@xoaomartini</p>
+  <p class="motto">Comam bem e sejam felizes! <span class="wave">🍴</span></p>
 
   <p class="tagline">
     <b>Humor, histórias e cultura!</b><br>
@@ -894,6 +883,7 @@
     if(e.key === 'Escape'){ closeMediaKit(null); closeColabPopup(null); closeParceriasPopup(null); }
   });
 
+
   function openColabPopup(){
     const overlay = document.getElementById('colabOverlay');
     overlay.style.display = 'flex';
@@ -1047,10 +1037,8 @@
   // Edite aqui o nome e o link de cada parceria (ordem da lista = ordem dos slides).
   // Enquanto não tiver o link real do post, deixa como está que aparece "Em breve".
   const parceriasList = [
-    { nome: 'Parceria', link: 'https://www.instagram.com/reels/Da0PWE5tCRi/' },
     { nome: 'Parceria', link: 'https://www.instagram.com/reels/DbbO0qqNeGt/' },
     { nome: 'Parceria', link: 'https://www.instagram.com/reels/DbYkOestLiz/' },
-    { nome: 'Parceria', link: 'https://www.instagram.com/reels/DbGCIJGtXrC/' },
     { nome: 'Parceria', link: 'https://www.instagram.com/reels/Da5SYeTN3aw/' },
     { nome: 'Parceria', link: 'https://www.instagram.com/reels/DVyiG0uiEEV/' },
   ];
